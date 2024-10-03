@@ -6,13 +6,13 @@ public class TopDownMovement : MonoBehaviour
 {
 
     public float moveSpeed;
-    public Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
     private Vector2 moveInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
