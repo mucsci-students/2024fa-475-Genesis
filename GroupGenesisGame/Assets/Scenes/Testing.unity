@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -185,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.0767083
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -210,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3763669, y: 1.4054596, z: -10}
+  m_LocalPosition: {x: 8.57, y: -0.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3444,7 +3443,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1543051223
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -5006,7 +5005,7 @@ Transform:
   m_GameObject: {fileID: 1564132053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.18, y: -0.52, z: -10}
+  m_LocalPosition: {x: 8.57, y: -0.12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5159,17 +5158,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 777929898922826901, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2298707068647824369, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.18
+      value: 8.57
       objectReference: {fileID: 0}
     - target: {fileID: 2298707068647824369, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.52
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2298707068647824369, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5202,18 +5197,6 @@ PrefabInstance:
     - target: {fileID: 2298707068647824369, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7006382655428543243, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7006382655428543243, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8598639237502448190, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
