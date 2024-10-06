@@ -38,7 +38,8 @@ public class TopDownMovement : MonoBehaviour
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", true);
-            animator.SetFloat("Direction", moveInput.x);
+            animator.SetFloat("LastHoriz", moveInput.x);
+            animator.SetFloat("LastVert", moveInput.y);
             animator.SetFloat("Speed", 0f);
             //while (context.canceled)
             //{
@@ -48,7 +49,7 @@ public class TopDownMovement : MonoBehaviour
         }
 
         moveInput = context.ReadValue<Vector2>();
-        moveInput.Normalize();
+        //moveInput.Normalize();
 
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
