@@ -9,9 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/spawn.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/floor1.unity
     guid: 3aa9fea14c8624125bc473647b8a3699
   - enabled: 1
     path: Assets/Scenes/floor2.unity
     guid: bf8691daef6e54b3baf7eb39c325629b
+=======
+    path: Assets/Scenes/Testing.unity
+    guid: 470479e8f4f2dbe4baf27af55a425cc3
+  - enabled: 1
+    path: Assets/Scenes/Testing2.unity
+    guid: 7f6249540fcb01b488c6f77454fcff08
+>>>>>>> 1860a953461bed421404ccff3288c56beebd1b08
   m_configObjects: {}
