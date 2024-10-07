@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Kill : MonoBehaviour
 {
-    [SerializeField]
     private GameObject player;
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +17,7 @@ public class Kill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame

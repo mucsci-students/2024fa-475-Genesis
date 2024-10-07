@@ -10,8 +10,6 @@ public class EnterRoom : MonoBehaviour
 
     [SerializeField]
     private Spawning spawner;
-
-    [SerializeField]
     private GameObject player;
 
 
@@ -29,7 +27,7 @@ public class EnterRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
