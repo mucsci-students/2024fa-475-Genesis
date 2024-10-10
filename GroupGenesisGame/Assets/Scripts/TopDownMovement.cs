@@ -13,6 +13,7 @@ public class TopDownMovement : MonoBehaviour
     private Vector2 moveInput;
     private Animator animator;
     private System.Random random = new System.Random();
+    private GameObject attackArea;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class TopDownMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("Idle", true);
+        attackArea = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class TopDownMovement : MonoBehaviour
         animator.SetBool("Idle", false);
         animator.SetBool("Walking", true);
         animator.SetFloat("Speed", moveSpeed);
+        //RotateAttack();
 
         if (context.canceled)
         {
@@ -53,11 +56,13 @@ public class TopDownMovement : MonoBehaviour
 
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
+    }
 
-
-        
-
-       
-        
+    private void RotateAttack()
+    {
+        if(moveInput.x != 0)
+        {
+            float x = moveInput.x / MathF.Abs(moveInput.x);
+        }
     }
 }
