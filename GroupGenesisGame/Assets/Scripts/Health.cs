@@ -7,10 +7,16 @@ public class Health : MonoBehaviour
 {
     public int health;
     public int numHearts;
+    private Animator anim;
 
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -36,5 +42,18 @@ public class Health : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        anim.SetFloat("Health", 0);
+        GetComponent<TopDownMovement>().enabled = false;
+        // Pause for a couple seconds to let animation play out
+        // Respawn player
     }
 }
