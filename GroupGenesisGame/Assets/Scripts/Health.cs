@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -13,9 +15,30 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public SceneAsset currentScene;
+    private GameObject player;
+
+    Persistence persist;
+
     private void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        persist = FindObjectOfType<Persistence>();
+        if (sceneName == "spawn")
+        {
+            // Set the base amount of health when
+            // starting a new game (in spawn room)
+            InitialHP();
+        }
+        else
+        {
+            numHearts = persist.CurrentHearts;
+            health = persist.CurrentHealth;
+        }
+
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -43,17 +66,86 @@ public class Health : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        // Call Die when player health reaches 0
+        if (health == 0) 
         {
             Die();
         }
+
+        // Change if to what causes a player to gain hearts
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            incHearts();
+        }
+
+        // Change if to what causes a player to regain health
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            incHealth();
+        }
+
+        // Change if to what causes player to take damage
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TakeDamage();
+        }
+
     }
 
     public void Die()
     {
         anim.SetFloat("Health", 0);
+        anim.SetBool("Idle", false);
         GetComponent<TopDownMovement>().enabled = false;
-        // Pause for a couple seconds to let animation play out
-        // Respawn player
+        persist.SetHealth(numHearts);
+        // Respawn player after 3 seconds to allow animation to play
+        Invoke("RespawnOnDeath", 3);
+    }
+
+    // Respawn Player
+    public void RespawnOnDeath()
+    {
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    private void incHealth()
+    {
+        if (health < numHearts)
+        {
+            health += 1;
+            persist.SetHealth(health);
+        }
+    }
+
+    private void incHearts()
+    {
+        if (numHearts < 8)
+        {
+            numHearts += 1;
+            persist.SetHearts(numHearts);
+        }
+    }
+
+    private void InitialHP()
+    {
+        numHearts = 3;
+        health = 3;
+        persist.SetHearts(numHearts);
+        persist.SetHealth(health);
+    }
+
+    private void TakeDamage()
+    {
+        health -= 1;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public int getHearts()
+    {
+        return numHearts;
     }
 }

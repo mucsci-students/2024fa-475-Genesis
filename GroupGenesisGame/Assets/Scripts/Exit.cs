@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour {
 
+    Persistence persist;
+
+    Health health;
+
     [SerializeField]
     public SceneAsset nextScene;
 
@@ -15,6 +19,12 @@ public class Exit : MonoBehaviour {
     {
         if (collision.tag == player.tag)
         {
+            // Update Player values in persistence in order to
+            // carry over into next scene
+            persist.SetHearts(health.getHearts());
+            persist.SetHealth(health.getHealth());
+            
+
             //DontDestroyOnLoad(player);
             //SceneManager.UnloadScene();
             SceneManager.LoadScene(nextScene.name);
@@ -25,6 +35,8 @@ public class Exit : MonoBehaviour {
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        persist = FindObjectOfType<Persistence>();
+        health = FindObjectOfType<Health>();
     }
 
     // Update is called once per frame
