@@ -17,7 +17,7 @@ public class Exit : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Make the player persistent across scene loads
-            DontDestroyOnLoad(player);
+            //DontDestroyOnLoad(player);
             
 
             // Start fading to black and then load the next scene
