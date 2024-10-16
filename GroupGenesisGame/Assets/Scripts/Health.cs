@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    public int health;
-    public int numHearts;
+    private int health;
+    private int numHearts;
     private Animator anim;
 
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    public SceneAsset currentScene;
+    private SceneAsset currentScene;
     private GameObject player;
 
     Persistence persist;
@@ -23,9 +23,9 @@ public class Health : MonoBehaviour
     private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+        //string sceneName = currentScene.name;
         persist = FindObjectOfType<Persistence>();
-        if (sceneName == "spawn")
+        if (currentScene.name == "spawn")
         {
             // Set the base amount of health when
             // starting a new game (in spawn room)
@@ -105,7 +105,7 @@ public class Health : MonoBehaviour
     // Respawn Player
     public void RespawnOnDeath()
     {
-        SceneManager.LoadScene(currentScene.name);
+        SceneManager.LoadSceneAsync(currentScene.name);
     }
 
     private void incHealth()

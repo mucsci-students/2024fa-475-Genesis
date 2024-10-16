@@ -10,9 +10,6 @@ public class Exit : MonoBehaviour {
 
     Health health;
 
-    [SerializeField]
-    public SceneAsset nextScene;
-
     private GameObject player;
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +24,7 @@ public class Exit : MonoBehaviour {
 
             //DontDestroyOnLoad(player);
             //SceneManager.UnloadScene();
-            SceneManager.LoadScene(nextScene.name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

@@ -6,10 +6,10 @@ using UnityEngine;
 public class Persistence : MonoBehaviour
 {
     string HealthKey = "Health";
-    public int CurrentHealth { get; set; }
+    public int CurrentHealth;
 
     string HeartsKey = "Hearts";
-    public int CurrentHearts { get; set; }
+    public int CurrentHearts;
 
     private void Awake()
     {
