@@ -302,37 +302,11 @@ PrefabInstance:
       value: OrcBaseAttack_0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5624734937490856387, guid: 3824ae3f1a5fcb8448c2c4f004900882, type: 3}
     - {fileID: 358851389692119247, guid: 3824ae3f1a5fcb8448c2c4f004900882, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8927551252045921759, guid: 3824ae3f1a5fcb8448c2c4f004900882, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 702938770}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3824ae3f1a5fcb8448c2c4f004900882, type: 3}
---- !u!1 &702938764 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8927551252045921759, guid: 3824ae3f1a5fcb8448c2c4f004900882, type: 3}
-  m_PrefabInstance: {fileID: 352853053}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &702938770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702938764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3361e8c229fff4ba8f66848fac18c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  numHearts: 0
-  hearts: []
-  fullHeart: {fileID: 0}
-  emptyHeart: {fileID: 0}
 --- !u!1 &721662819
 GameObject:
   m_ObjectHideFlags: 0

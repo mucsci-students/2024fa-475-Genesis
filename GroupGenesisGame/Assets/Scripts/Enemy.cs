@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    int health = 5;
     GameObject target;
     Animator animator;
     NavMeshAgent agent;
@@ -45,5 +47,16 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Idle", true);
         }
 
+    }
+
+    public void Damage(int damaged)
+    {
+        health -= damaged;
+        if(health <= 0)
+        {
+            Debug.Log(this.name + " is dead :(");
+            UnityEngine.Object.Destroy(this.gameObject);
+            //DestroyObject(this);
+        }
     }
 }

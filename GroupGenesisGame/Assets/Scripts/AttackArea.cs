@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private int damage = 3;
+    private int damage = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Health>() != null)
+        if(collision.GetComponent<Enemy>() != null)
         {
-            Health health = collision.GetComponent<Health>();
+            Enemy health = collision.GetComponent<Enemy>();
+            health.Damage(damage);
             //damage health
             //but for testing destroy object
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 }
