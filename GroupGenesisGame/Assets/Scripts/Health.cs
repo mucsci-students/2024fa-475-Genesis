@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
             numHearts = persist.CurrentHearts;
             health = persist.CurrentHealth;
         }
+        PlayerPrefs.Save();
 
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");

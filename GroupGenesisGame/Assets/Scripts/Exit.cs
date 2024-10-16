@@ -20,7 +20,8 @@ public class Exit : MonoBehaviour {
             // carry over into next scene
             persist.SetHearts(health.getHearts());
             persist.SetHealth(health.getHealth());
-            
+            PlayerPrefs.Save();
+
 
             //DontDestroyOnLoad(player);
             //SceneManager.UnloadScene();
