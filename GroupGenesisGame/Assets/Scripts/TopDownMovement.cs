@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class TopDownMovement : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb2d;
     private Vector2 moveInput;
     private Animator animator;
@@ -57,6 +57,11 @@ public class TopDownMovement : MonoBehaviour
 
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
+    }
+
+    public void IncreaseSpeed(float multiplier)
+    {
+        moveSpeed *= multiplier;  // Permanently increase speed
     }
 
     private void RotateAttack()
