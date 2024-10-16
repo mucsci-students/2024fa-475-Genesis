@@ -35,7 +35,7 @@ public class TopDownMovement : MonoBehaviour
         animator.SetBool("Idle", false);
         animator.SetBool("Walking", true);
         animator.SetFloat("Speed", moveSpeed);
-        
+
         RotateAttack();
 
         if (context.canceled)
@@ -68,7 +68,7 @@ public class TopDownMovement : MonoBehaviour
     {
         float x = attackArea.transform.localScale.x,
               y = attackArea.transform.localScale.y;
-        if(moveInput.x != 0)
+        if (moveInput.x != 0)
         {
             x = moveInput.x / MathF.Abs(moveInput.x);
         }
@@ -76,7 +76,7 @@ public class TopDownMovement : MonoBehaviour
         {
             y = moveInput.y / MathF.Abs(moveInput.y);
         }
-        attackArea.transform.localScale = new Vector2 (1*x, 1);
+        attackArea.transform.localScale = new Vector2(1 * x, 1);
         float rotation = 45f * x * -y;
         attackArea.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
     }

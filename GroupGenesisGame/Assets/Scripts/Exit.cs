@@ -12,13 +12,17 @@ public class Exit : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;  // Duration of fade effect
 
+    Persistence persist;
+    Health health;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // Make the player persistent across scene loads
-            //DontDestroyOnLoad(player);
-            
+            // Update Player values in persistence in order to carry over into next scene
+            persist.SetHearts(health.getHearts());
+            persist.SetHealth(health.getHealth());
+            PlayerPrefs.Save();
 
             // Start fading to black and then load the next scene
             StartCoroutine(FadeAndSwitchScene());
@@ -36,7 +40,7 @@ public class Exit : MonoBehaviour
 
         // Load the next scene
         SceneManager.sceneLoaded += OnSceneLoaded;  // Subscribe to sceneLoaded event
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(nextSceneName);  // Using the provided nextSceneName
     }
 
     // Coroutine to fade the image to black
@@ -92,6 +96,8 @@ public class Exit : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        persist = FindObjectOfType<Persistence>();
+        health = FindObjectOfType<Health>();
 
         // Ensure the fadeImage is fully transparent at the start
         SetImageAlpha(0f);  // Make it invisible at the start
@@ -100,6 +106,6 @@ public class Exit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Any additional update logic can go here
     }
 }
