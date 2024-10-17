@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4364667067339767779}
   - component: {fileID: 5441715370116337746}
   - component: {fileID: 2008730413248207827}
+  - component: {fileID: 2081957555746016330}
   m_Layer: 5
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +67,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 781263207
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &5441715370116337746
@@ -109,6 +110,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2081957555746016330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684444840254706146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3361e8c229fff4ba8f66848fac18c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 43820853347885758}
+  - {fileID: 2068740338768477971}
+  - {fileID: 4986962837785239111}
+  - {fileID: 406092948118068572}
+  - {fileID: 4844201629315586325}
+  - {fileID: 3424591441972071537}
+  - {fileID: 6609390428699786022}
+  - {fileID: 77307032006592597}
+  fullHeart: {fileID: 21300000, guid: 8e03188e84b4f0e48b963a03016741d6, type: 3}
+  emptyHeart: {fileID: 21300000, guid: f5cba7a4a360d634593aac002edc6915, type: 3}
 --- !u!1 &3316474484019822833
 GameObject:
   m_ObjectHideFlags: 0

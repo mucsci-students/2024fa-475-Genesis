@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/bossfloor.unity
     guid: 27ccd78a8a95b400bbd8a849510bcae3
+  - enabled: 1
+    path: Assets/Scenes/victoryScreen.unity
+    guid: 379f803f5994d45a6a842852eb007624
   m_configObjects: {}

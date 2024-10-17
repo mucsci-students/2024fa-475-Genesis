@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Spawner
   - SpawnPoint
+  - Data
+  - Health
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -48,4 +51,7 @@ TagManager:
     locked: 0
   - name: Walls
     uniqueID: 3940180757
+    locked: 0
+  - name: HealthUI
+    uniqueID: 781263207
     locked: 0

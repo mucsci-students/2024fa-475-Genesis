@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TogglePause : MonoBehaviour
 {
@@ -19,10 +21,10 @@ public class TogglePause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pauseMenu.enabled = ispaused;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ispaused = !ispaused;
-            pauseMenu.enabled = ispaused;
         }
 
         if (ispaused)

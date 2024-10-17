@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3887896016588276920}
   - component: {fileID: 3175625467189846441}
   - component: {fileID: 2044351261075903363}
+  - component: {fileID: 4669190023193262349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -222,13 +223,13 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 777929898922826901}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2044351261075903363}
+        m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -293,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a4214856c467043b5defca6faa244e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 6
 --- !u!114 &2044351261075903363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79757513e3706454dba7e78e426561df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4669190023193262349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777929898922826901}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3361e8c229fff4ba8f66848fac18c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: 8e03188e84b4f0e48b963a03016741d6, type: 3}
+  emptyHeart: {fileID: 21300000, guid: f5cba7a4a360d634593aac002edc6915, type: 3}
 --- !u!1 &1772346880268201350
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,13 +440,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838977707132563266}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2298707068647824369}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!60 &2304831739557381443
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -467,9 +491,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.5, y: 0.75}
-      - {x: 0.5, y: 0}
-      - {x: 1.5, y: -0.75}
+    - - {x: 1.5, y: 2}
+      - {x: 0, y: 0}
+      - {x: 1.5, y: -2}
   m_UseDelaunayMesh: 0
 --- !u!114 &8335463940617749194
 MonoBehaviour:

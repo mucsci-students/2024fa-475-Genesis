@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
+using UnityEditor;
 using UnityEngine;
 
 public class Persistence : MonoBehaviour
@@ -11,20 +11,18 @@ public class Persistence : MonoBehaviour
     string HeartsKey = "Hearts";
     public int CurrentHearts;
 
-    private void Awake()
-    {
-        CurrentHealth = PlayerPrefs.GetInt(HealthKey);
-        CurrentHearts = PlayerPrefs.GetInt(HeartsKey);
-    }
+    public string scene;
 
     public void SetHealth(int hp)
     {
-        PlayerPrefs.SetInt(HealthKey, hp);
+        CurrentHealth = hp;
+        PlayerPrefs.SetInt(HealthKey, CurrentHealth);
     }
 
     public void SetHearts(int hearts)
     {
-        PlayerPrefs.SetInt(HeartsKey, hearts);
+        CurrentHearts = hearts;
+        PlayerPrefs.SetInt(HeartsKey, CurrentHearts);
     }
 
 

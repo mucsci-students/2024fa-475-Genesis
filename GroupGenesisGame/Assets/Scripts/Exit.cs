@@ -12,6 +12,7 @@ public class Exit : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;  // Duration of fade effect
 
+    GameObject persistance;
     Persistence persist;
     Health health;
 
@@ -20,9 +21,9 @@ public class Exit : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Update Player values in persistence in order to carry over into next scene
-            persist.SetHearts(health.getHearts());
-            persist.SetHealth(health.getHealth());
-            PlayerPrefs.Save();
+            persist.SetHearts(health.getHearts() + 1);
+            persist.SetHealth(health.getHearts() + 1);
+            //PlayerPrefs.Save();
 
             // Start fading to black and then load the next scene
             StartCoroutine(FadeAndSwitchScene());
@@ -37,7 +38,8 @@ public class Exit : MonoBehaviour
 
         // Start fading to black
         yield return StartCoroutine(FadeToBlack());
-
+        
+        persist.scene = nextSceneName;
         // Load the next scene
         SceneManager.sceneLoaded += OnSceneLoaded;  // Subscribe to sceneLoaded event
         SceneManager.LoadScene(nextSceneName);  // Using the provided nextSceneName
@@ -96,9 +98,10 @@ public class Exit : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        persist = FindObjectOfType<Persistence>();
-        health = FindObjectOfType<Health>();
-
+        persistance = GameObject.FindWithTag("Data");
+        persist = persistance.GetComponent<Persistence>();
+        health = GameObject.FindWithTag("Health").GetComponent<Health>();
+        DontDestroyOnLoad(persistance);
         // Ensure the fadeImage is fully transparent at the start
         SetImageAlpha(0f);  // Make it invisible at the start
     }

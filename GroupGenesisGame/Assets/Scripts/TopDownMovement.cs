@@ -8,11 +8,10 @@ using UnityEngine.InputSystem;
 public class TopDownMovement : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] public float moveSpeed;
     private Rigidbody2D rb2d;
     private Vector2 moveInput;
     private Animator animator;
-    private System.Random random = new System.Random();
     private GameObject attackArea;
 
     // Start is called before the first frame update
@@ -32,52 +31,53 @@ public class TopDownMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        animator.SetBool("Idle", false);
-        animator.SetBool("Walking", true);
-        animator.SetFloat("Speed", moveSpeed);
-
-        RotateAttack();
-
-        if (context.canceled)
+        if (!animator.GetBool("Dead"))
         {
-            animator.SetBool("Walking", false);
-            animator.SetBool("Idle", true);
-            animator.SetFloat("LastHoriz", moveInput.x);
-            animator.SetFloat("LastVert", moveInput.y);
-            animator.SetFloat("Speed", 0f);
-            //while (context.canceled)
-            //{
-            //    WaitForSeconds(1);
-            //    animator.SetFloat("Random", (float)random.NextDouble());
-            //}
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walking", true);
+            animator.SetFloat("Speed", moveSpeed);
+
+            RotateAttack();
+
+            if (context.canceled)
+            {
+                animator.SetBool("Walking", false);
+                animator.SetBool("Idle", true);
+                //animator.SetFloat("LastHoriz", moveInput.x);
+                //animator.SetFloat("LastVert", moveInput.y);
+                animator.SetFloat("Speed", 0f);
+            }
+
+            moveInput = context.ReadValue<Vector2>();
+            //moveInput.Normalize();
+            if (moveInput.x != 0)
+            {
+                animator.SetFloat("Horizontal", moveInput.x / Mathf.Abs(moveInput.x));
+            }
+            if (moveInput.y != 0)
+            {
+                animator.SetFloat("Vertical", moveInput.y / Mathf.Abs(moveInput.y));
+            }
         }
-
-        moveInput = context.ReadValue<Vector2>();
-        //moveInput.Normalize();
-
-        animator.SetFloat("Horizontal", moveInput.x);
-        animator.SetFloat("Vertical", moveInput.y);
     }
 
-    public void IncreaseSpeed(float multiplier)
+    public void IncreaseSpeed(float speed)
     {
-        moveSpeed *= multiplier;  // Permanently increase speed
+        moveSpeed += speed;
     }
 
     private void RotateAttack()
     {
-        float x = attackArea.transform.localScale.x,
-              y = attackArea.transform.localScale.y;
-        if (moveInput.x != 0)
-        {
-            x = moveInput.x / MathF.Abs(moveInput.x);
-        }
-        if (moveInput.y != 0)
-        {
-            y = moveInput.y / MathF.Abs(moveInput.y);
-        }
+        //float direction = attackArea.transform.localScale.x;
+        float x = animator.GetFloat("Horizontal"), y = animator.GetFloat("Vertical");
+        float rotation = -45;
+        rotation = x > 0 ? -45f : 45f;
         attackArea.transform.localScale = new Vector2(1 * x, 1);
-        float rotation = 45f * x * -y;
+        rotation = rotation * -y;
+
         attackArea.transform.rotation = Quaternion.Euler(0f, 0f, rotation);
     }
+
 }
+
+

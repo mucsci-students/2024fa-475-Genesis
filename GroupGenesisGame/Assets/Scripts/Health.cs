@@ -4,28 +4,34 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Health : MonoBehaviour
 {
+    private bool dead = false;
     private int health;
     private int numHearts;
     private Animator anim;
 
     public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    [SerializeField] public Sprite fullHeart;
+    [SerializeField] public Sprite emptyHeart;
 
-    private SceneAsset currentScene;
+    private string currentScene;
+    //public SceneAsset spawnScene;
     private GameObject player;
 
     Persistence persist;
+    GameObject persistence;
 
     private void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+        //Scene currentScene = SceneManager.GetActiveScene();
         //string sceneName = currentScene.name;
-        persist = FindObjectOfType<Persistence>();
-        if (currentScene.name == "spawn")
+        persistence = GameObject.FindWithTag("Data");
+        persist = persistence.GetComponent<Persistence>();
+        currentScene = persist.scene;
+        if (currentScene == "spawn")
         {
             // Set the base amount of health when
             // starting a new game (in spawn room)
@@ -36,14 +42,18 @@ public class Health : MonoBehaviour
             numHearts = persist.CurrentHearts;
             health = persist.CurrentHealth;
         }
-        PlayerPrefs.Save();
-
-        anim = GetComponent<Animator>();
+        //PlayerPrefs.Save();
+        
         player = GameObject.FindGameObjectWithTag("Player");
+        anim = player.GetComponent<Animator>();
+        
     }
 
     private void Update()
     {
+        
+        //CheckHealth();
+        Scene currentScene = SceneManager.GetActiveScene();
 
         if (health > numHearts)
         {
@@ -71,12 +81,12 @@ public class Health : MonoBehaviour
             }
         }
 
-        // Call Die when player health reaches 0
-        if (health == 0)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            Die();
+            TakeDamage();
         }
 
+        /*
         // Change if to what causes a player to gain hearts
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -88,29 +98,49 @@ public class Health : MonoBehaviour
         {
             incHealth();
         }
+        */
 
-        // Change if to what causes player to take damage
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage();
-        }
+    }
 
+    private void CheckHealth()
+    {
+        numHearts = persist.CurrentHearts;
+        health = persist.CurrentHealth;
     }
 
     public void Die()
     {
-        anim.SetFloat("Health", 0);
+        player.GetComponent<TopDownMovement>().moveSpeed = 0f;
+        player.GetComponent<TopDownMovement>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
+
+        anim.SetBool("Dead", dead);
+        anim.SetBool("Walking", false);
         anim.SetBool("Idle", false);
-        GetComponent<TopDownMovement>().enabled = false;
-        persist.SetHealth(numHearts);
+        anim.SetFloat("Speed", 0);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) { enemy.GetComponent<Enemy>().Stop(); }
+        StartCoroutine(Kill());
+        //Wait();
+        //persist.SetHealth(numHearts);
         // Respawn player after 3 seconds to allow animation to play
-        Invoke("RespawnOnDeath", 3);
+        //Invoke("RespawnOnDeath", 2);
+        
+    }
+
+    private IEnumerator Kill()
+    {
+        anim.SetTrigger("Death");
+        yield return new WaitForSeconds(1.5f);
+        Destroy(player);
+        RespawnOnDeath();
     }
 
     // Respawn Player
     public void RespawnOnDeath()
     {
-        SceneManager.LoadSceneAsync(currentScene.name);
+        SceneManager.LoadSceneAsync(currentScene);
     }
 
     private void incHealth()
@@ -118,7 +148,7 @@ public class Health : MonoBehaviour
         if (health < numHearts)
         {
             health += 1;
-            persist.SetHealth(health);
+            //persist.SetHealth(health);
         }
     }
 
@@ -127,7 +157,7 @@ public class Health : MonoBehaviour
         if (numHearts < 8)
         {
             numHearts += 1;
-            persist.SetHearts(numHearts);
+            //persist.SetHearts(numHearts);
         }
     }
 
@@ -139,9 +169,22 @@ public class Health : MonoBehaviour
         persist.SetHealth(health);
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         health -= 1;
+        //persist.SetHealth(health);
+        if(health > 0) anim.SetTrigger("Damage");
+        else if (health <= 0 && !dead)
+        {
+            // Call Die when player health reaches 0
+            dead = true;
+            Die();
+        }
+        //StartCoroutine(PlayAnim());
+    }
+    private IEnumerator PlayAnim()
+    {
+        yield return new WaitForSeconds(.5f);
     }
 
     public int getHealth()

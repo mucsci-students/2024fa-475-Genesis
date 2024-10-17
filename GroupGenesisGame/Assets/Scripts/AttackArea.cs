@@ -12,9 +12,6 @@ public class AttackArea : MonoBehaviour
         {
             Enemy health = collision.GetComponent<Enemy>();
             health.Damage(damage);
-            //damage health
-            //but for testing destroy object
-            //Destroy(collision.gameObject);
         }
     }
 }
