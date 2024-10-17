@@ -39867,7 +39867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6eeee48f034282b4aab2024bf4579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 1.5
+  speedMultiplier: 2
 --- !u!61 &592652371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41470,7 +41470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3175625467189846441, guid: 8d3cf5086b1a3bf439a835d930da7613, type: 3}
       propertyPath: moveSpeed
-      value: 20
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
